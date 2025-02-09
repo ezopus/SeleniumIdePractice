@@ -11,6 +11,17 @@ public class TC01IfUserIsInvalidTryAgainTest
 	[SetUp]
 	public void SetUp()
 	{
+		ChromeOptions options = new ChromeOptions();
+
+		// Make Chrome run in headless mode and avoid using a default user data directory
+		options.AddArgument("--headless");
+		options.AddArgument("--no-sandbox");
+		options.AddArgument("--disable-dev-shm-usage");
+
+		// Set a unique user data directory
+		string userDataDir = "/tmp/chrome-user-data-dir"; // Can specify any temp location
+		options.AddArgument($"--user-data-dir={userDataDir}");
+
 		driver = new ChromeDriver();
 		js = (IJavaScriptExecutor)driver;
 		vars = new Dictionary<string, object>();
