@@ -18,11 +18,7 @@ public class TC01IfUserIsInvalidTryAgainTest
 		options.AddArgument("--no-sandbox");
 		options.AddArgument("--disable-dev-shm-usage");
 
-		// Set a unique user data directory
-		string userDataDir = "/tmp/chrome-user-data-dir"; // Can specify any temp location
-		options.AddArgument($"--user-data-dir={userDataDir}");
-
-		driver = new ChromeDriver();
+		driver = new ChromeDriver(options);
 		js = (IJavaScriptExecutor)driver;
 		vars = new Dictionary<string, object>();
 	}
